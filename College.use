@@ -1,0 +1,50 @@
+model College
+
+-- classes
+
+class Student
+attributes
+  name : String
+  age : Integer	
+end
+
+class Module
+attributes
+  name : String
+  credits : Integer
+operations
+  enroll(s : Student)
+  assign(r : Room)
+end
+
+class Room
+attributes
+  capacity : Integer
+  roomNo : String
+end
+
+-- associations
+
+association Studies between
+  Student[1..*] role enrolled
+  Module[1..*] role modules
+end
+
+association DeliveredIn between
+  Module[0..*] role modules
+  Room[1] role room
+end
+
+-- constraints
+
+constraints
+
+context Module::enroll(s : Student)
+  pre enrollPre1: enrolled->excludes(s)
+  pre erollPre2: s.age>=16
+  post: enrolled->includes(s)
+  
+--context Module::assign(r : Room)
+ --pre  assignPre1: capacity.isDefined()
+ --pre  assignPre2: capacity=30
+  

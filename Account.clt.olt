@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram_Layout version="4">
+  <diagramOptions>
+    <autolayout>false</autolayout>
+    <antialiasing>false</antialiasing>
+    <showassocnames>true</showassocnames>
+    <showattributes>true</showattributes>
+    <showmultiplicities>false</showmultiplicities>
+    <showoperations>false</showoperations>
+    <showrolenames>true</showrolenames>
+    <showgrid>false</showgrid>
+  </diagramOptions>
+  <node type="Object">
+    <name>v1</name>
+    <x_coord>49.93043835197375</x_coord>
+    <y_coord>18.43630725298459</y_coord>
+    <hidden>false</hidden>
+  </node>
+  <node type="Object">
+    <name>paul</name>
+    <x_coord>19.91377906770936</x_coord>
+    <y_coord>108.4653038141441</y_coord>
+    <hidden>false</hidden>
+  </node>
+  <node type="Object">
+    <name>processor</name>
+    <x_coord>356.2162444863218</x_coord>
+    <y_coord>6.655714684906712</y_coord>
+    <hidden>false</hidden>
+  </node>
+  <node type="Object">
+    <name>r1</name>
+    <x_coord>348.447330254259</x_coord>
+    <y_coord>69.01315099645113</y_coord>
+    <hidden>false</hidden>
+  </node>
+  <edge type="BinaryEdge">
+    <source>v1</source>
+    <target>r1</target>
+    <name>unPaidInvoices</name>
+    <edgeproperty type="associationName" userDefined="true">
+      <name>unPaidInvoices</name>
+      <x_coord>186.0</x_coord>
+      <y_coord>89.15380859375</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty kind="target" type="rolename" userDefined="true">
+      <name>unProcessedReceivables</name>
+      <x_coord>246.625</x_coord>
+      <y_coord>52.0</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty kind="target" type="multiplicity" userDefined="false">
+      <name>0..1</name>
+      <x_coord>346.0</x_coord>
+      <y_coord>34.5</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty kind="source" type="rolename" userDefined="true">
+      <name>unProcessedInvoices</name>
+      <x_coord>150.0</x_coord>
+      <y_coord>32.0</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty kind="source" type="multiplicity" userDefined="false">
+      <name>*</name>
+      <x_coord>132.453125</x_coord>
+      <y_coord>95.0</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty type="WayPoint" userDefined="false">
+      <name>0</name>
+      <x_coord>146.0</x_coord>
+      <y_coord>54.0</y_coord>
+      <hidden>false</hidden>
+      <id>0</id>
+      <specialid>1</specialid>
+    </edgeproperty>
+    <edgeproperty type="WayPoint" userDefined="false">
+      <name>1</name>
+      <x_coord>344.0</x_coord>
+      <y_coord>108.0</y_coord>
+      <hidden>false</hidden>
+      <id>1</id>
+      <specialid>2</specialid>
+    </edgeproperty>
+    <hidden>false</hidden>
+  </edge>
+  <edge type="BinaryEdge">
+    <source>paul</source>
+    <target>r1</target>
+    <name>cRev</name>
+    <edgeproperty type="associationName" userDefined="true">
+      <name>cRev</name>
+      <x_coord>243.0</x_coord>
+      <y_coord>136.65380859375</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty kind="target" type="rolename" userDefined="true">
+      <name>receivablesAccount</name>
+      <x_coord>239.75</x_coord>
+      <y_coord>175.0</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty kind="target" type="multiplicity" userDefined="false">
+      <name>0..1</name>
+      <x_coord>346.0</x_coord>
+      <y_coord>220.5</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty kind="source" type="rolename" userDefined="true">
+      <name>customer</name>
+      <x_coord>177.0</x_coord>
+      <y_coord>152.0</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty kind="source" type="multiplicity" userDefined="false">
+      <name>1</name>
+      <x_coord>156.109375</x_coord>
+      <y_coord>79.0</y_coord>
+      <hidden>false</hidden>
+    </edgeproperty>
+    <edgeproperty type="WayPoint" userDefined="false">
+      <name>0</name>
+      <x_coord>169.0</x_coord>
+      <y_coord>175.0</y_coord>
+      <hidden>false</hidden>
+      <id>0</id>
+      <specialid>1</specialid>
+    </edgeproperty>
+    <edgeproperty type="WayPoint" userDefined="false">
+      <name>1</name>
+      <x_coord>344.0</x_coord>
+      <y_coord>142.0</y_coord>
+      <hidden>false</hidden>
+      <id>1</id>
+      <specialid>2</specialid>
+    </edgeproperty>
+    <hidden>false</hidden>
+  </edge>
+</diagram_Layout>

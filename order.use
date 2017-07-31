@@ -1,0 +1,56 @@
+model Order
+
+-- classes
+
+class Customer
+attributes
+  creditLimit : Integer
+  name : String	
+end
+
+class Order
+attributes
+  cost : Integer
+operations
+  addItem(item : OrderLine)
+end
+
+class OrderLine
+attributes
+  quantity : Integer
+end
+
+class Product
+attributes
+  cost : Integer
+  name : String
+end
+
+-- associations
+
+association HasOrdered between
+  Customer[1] role orderedBy
+  Order[0..*] role orders
+end
+
+association Contains between
+  Order[1] role orderOf
+  OrderLine[1..*] role items
+end
+
+association HasProduct between
+  OrderLine[1] role isA
+  Product[0..*] role contains
+end
+
+-- constraints
+
+constraints
+
+context Order::addItem(item : OrderLine)
+  pre addItemPre1: items->excludes(item)
+  pre addItemPre2: orderedBy.creditLimit >= cost * items.quantity 
+  post addItemPost1: items->includes(item)
+  post addItemPost2: cost= cost@pre+ items.quantity
+  
+  

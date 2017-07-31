@@ -1,0 +1,88 @@
+model Account
+
+class Invoice
+attributes
+	number : String
+	amount : Real
+end
+
+class ReceivablesAccount
+attributes
+	number : String
+	currentBalance : Real
+	_30DayBalance : Real
+	_60DayBalance : Real
+	_90DayBalance : Real
+	_120DayBalance : Real
+	collections : Real
+end
+
+class Customer
+attributes
+	id : String
+	firstName : String
+	lastName : String
+	address1 : String
+	address2 : String
+	city : String
+	state : String
+	zip : String
+	telHome : String
+	telWork : String
+end
+class ARProcessor
+operations
+	ProcessInvoices(arAccounts : ReceivablesAccount)
+	EndOfMonthUpdate(arAccounts : ReceivablesAccount)
+end
+
+
+association unPaidInvoices 
+	between
+		Invoice[0..*] role unProcessedInvoices
+		ReceivablesAccount[0..1] role unProcessedReceivables		
+end
+
+association paidInvoices between
+		Invoice[0..*] role processedInvoices
+		ReceivablesAccount[0..1] role processedReceivables
+end
+
+association cRev between
+	Customer[1]
+	ReceivablesAccount[0..1]
+end
+
+constraints
+
+context ReceivablesAccount
+	inv invoiceNumberLength:
+		self.number.size() = 6		
+	inv inv2:
+		unProcessedInvoices->intersection(processedInvoices)->isEmpty()
+		
+context ARProcessor::ProcessInvoices(arAccounts : Set(ReceivablesAccount))
+	pre pre1:
+		arAccounts->forAll(unProcessedInvoices->notEmpty())	
+	post post1:
+		arAccounts->forAll
+		(
+			unProcessedInvoices->isEmpty() and
+			processedInvoices->includesAll(unProcessedInvoices@pre)
+		)
+
+
+context ARProcessor::EndOfMonthUpdate(arAccounts : Set(ReceivablesAccount))
+	pre pre1:
+		arAccounts->forAll(unProcessedInvoices->isEmpty())	
+	post post1:
+		arAccounts->forAll
+		(
+			currentBalance = 0 and
+			_30DayBalance = currentBalance@pre and
+			_60DayBalance = _30DayBalance@pre and
+			_90DayBalance = _60DayBalance@pre and
+			_120DayBalance = _90DayBalance@pre and
+			collections = collections@pre + _120DayBalance@pre
+		
+		)
